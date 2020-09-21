@@ -1,0 +1,6 @@
+.vscode/
+css/
+!css/index.css
+*.css.map
+dist/
+node_modules/
