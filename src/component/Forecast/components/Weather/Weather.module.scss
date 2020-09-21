@@ -1,7 +1,8 @@
+@import '/src/scss/variables';
+
 .Weather {
-  display: flex;
-  align-items: center;
   flex: 0 0 20%;
+  text-align: center;
 }
 
 .day {
@@ -9,9 +10,21 @@
 }
 
 .icon {
-
+  padding: 10px 0;
+  > img {
+    width: 50px;
+  }
 }
 
 .temperature {
-  
+  font-size: 1.25rem;
+  color: $light-black;
+}
+
+@media screen and (min-width: 1024px) {
+  .icon {
+    > img {
+      width: 70px;
+    }
+  }
 }

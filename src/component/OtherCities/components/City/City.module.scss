@@ -1,16 +1,39 @@
 .City {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
 }
 
 .name {
-  flex: 1 1 60%;
+  flex: 1 1 40%;
 }
 
 .temperature {
-  flex: 0 0 20%;
+  flex: 0 0 30%;
 }
 
 .icon {
-  flex: 0 0 20%;
+
+  > img {
+    width: 50px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .City {
+    font-size: 1.2rem;
+  }
+
+  .icon {
+    > img {
+      width: 70px;
+    }
+  }
 }

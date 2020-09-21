@@ -45,11 +45,13 @@ class App extends Component {
   render() {
     const { currentCity, weatherData } = this.state;
     return (
-      <div className="container">
-        <Current city={currentCity} data={weatherData[0]} />
-        <div className="bottom">
-          <Forecast />
-          <OtherCities />
+      <div className="App">
+        <div className="container">
+          <Current city={currentCity} data={weatherData[0]} />
+          <div className="bottom">
+            <Forecast />
+            <OtherCities />
+          </div>
         </div>
       </div>
     );

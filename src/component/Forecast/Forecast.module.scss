@@ -1,6 +1,31 @@
-.Forecast {}
+@import '/src/scss/variables';
+
+.Forecast {
+  flex: 0 0 100%;
+  padding: 25px 30px;
+  border-bottom: 1px solid $light-black;
+}
+
+.header {
+  color: $light-black;
+}
 
 .weathers {
   display: flex;
   flex-direction: row;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 1024px) {
+  .Forecast {
+    flex: 0 0 60%;
+    padding: 0 50px;
+    border-bottom: none;
+    border-left: 3px solid $light-black;
+  }
+
+  .header {
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+  }
 }

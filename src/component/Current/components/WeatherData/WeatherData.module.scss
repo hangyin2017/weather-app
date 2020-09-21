@@ -1,3 +1,5 @@
+@import '/src/scss/variables';
+
 .WeatherData {
   display: flex;
   flex-flow: column wrap;
@@ -5,16 +7,10 @@
   flex: 0 0 100%;
 }
 
-.temperature {
-
+@media screen and (min-width: 1024px) {
+  .WeatherData {
+    order: -1;
+    flex: 1 1 60%;
+    padding: 0 50px;
+  }
 }
-
-.weather {
-
-}
-
-.otherInfo {}
-
-.humidity {}
-
-.wind {}

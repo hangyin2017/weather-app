@@ -1,1 +1,27 @@
-.OtherCities {}
+@import '/src/scss/variables';
+
+.OtherCities {
+  flex: 0 0 100%;
+  padding: 25px 30px;
+}
+
+.header {
+  color: $light-black;
+}
+
+.citiesList {
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+  .OtherCities {
+    flex: 0 0 40%;
+    order: -1;
+    padding: 0px 50px;
+  }
+
+  .header {
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+  }
+}

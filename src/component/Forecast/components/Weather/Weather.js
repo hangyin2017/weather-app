@@ -7,7 +7,7 @@ const Weather = () =>
     <div className={styles.icon}>
       <img src="http://openweathermap.org/img/wn/11d@2x.png" />
     </div>
-    <div className={styles.temperature}>15 &nbsp;C</div>
+    <div className={styles.temperature}>15<span>&nbsp;°</span></div>
   </div>
 
 export default Weather;
