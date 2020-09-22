@@ -40,19 +40,27 @@ class App extends Component {
         },
       ]
     }
+
+    this.setCurrentCity = this.setCurrentCity.bind(this);
+  }
+
+  setCurrentCity(city) {
+    console.log(city);
+    this.setState({ currentCity: city });
   }
 
   render() {
     const { currentCity, weatherData } = this.state;
     const currentCityIndex = weatherData.findIndex(data => data.city === currentCity);
-    const [currentData] = weatherData.splice(currentCityIndex, 1);
+    const otherCitesData = [...weatherData];
+    const [currentCityData] = otherCitesData.splice(currentCityIndex, 1);
     return (
       <div className="App">
         <div className="container">
-          <Current data={currentData} />
+          <Current data={currentCityData} />
           <div className="bottom">
             <Forecast />
-            <OtherCities data={weatherData} />
+            <OtherCities data={otherCitesData} onCityClick={this.setCurrentCity} />
           </div>
         </div>
       </div>
