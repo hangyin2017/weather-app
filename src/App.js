@@ -3,6 +3,7 @@ import styles from './scss/App.scss';
 import Current from './component/Current';
 import OtherCities from './component/OtherCities';
 import Forecast from './component/Forecast';
+import OpenWeatherMap from './utils/OpenWeatherMap';
 
 class App extends Component {
   constructor(props) {
@@ -56,13 +57,9 @@ class App extends Component {
   }
 
   async getWeather() {
-    const baseURL = 'https://api.openweathermap.org/data/2.5';
-    const key = '216d2848c9468ebc32e6b1975c3ebc54';
-    const weatherURL = `/weather?id=${this.CITIES[0].id}&appid=${key}`;
-    const weathers = await fetch(baseURL + weatherURL).then(res => res.json());
-    // console.log(weathers);
+    const weather = await OpenWeatherMap('weather', this.state.currentCity.id);
     // this.setState({
-    //   weathers: weathers,
+    //   weathers: weather,
     // });
   }
 
@@ -70,13 +67,10 @@ class App extends Component {
     this.setState({
       loading: true,
     })
-    const baseURL = 'https://api.openweathermap.org/data/2.5';
-    const key = '216d2848c9468ebc32e6b1975c3ebc54';
     const ids = this.CITIES.map((city) => city.id);
-    const weathersURL = `/group?id=${ids.join(',')}&units=metric&appid=${key}`;
-    const weathers = await fetch(baseURL + weathersURL).then(res => res.json());
+    const { list } = await OpenWeatherMap('group', ids.join(','));
     this.setState({
-      weathers: weathers.list,
+      weathers: list,
       loading: false,
     });
   }
