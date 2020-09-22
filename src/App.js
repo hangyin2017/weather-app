@@ -44,14 +44,15 @@ class App extends Component {
 
   render() {
     const { currentCity, weatherData } = this.state;
-    const [currentData] = weatherData.filter(data => data.city === currentCity);
+    const currentCityIndex = weatherData.findIndex(data => data.city === currentCity);
+    const [currentData] = weatherData.splice(currentCityIndex, 1);
     return (
       <div className="App">
         <div className="container">
           <Current data={currentData} />
           <div className="bottom">
             <Forecast />
-            <OtherCities />
+            <OtherCities data={weatherData} />
           </div>
         </div>
       </div>

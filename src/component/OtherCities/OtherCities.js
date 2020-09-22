@@ -2,14 +2,13 @@ import React from 'react';
 import styles from './OtherCities.module.scss';
 import City from './components/City';
 
-const OtherCities = () =>
+const OtherCities = ({ data }) => (
   <section className={styles.OtherCities}>
     <h4 className={styles.header}>Other Cities</h4>
     <div className={styles.citiesList}>
-      <City />
-      <City />
-      <City />
+      {data.map(cityData => (<City key={cityData.city} data={cityData} />))}
     </div>
   </section>
+)
 
 export default OtherCities;
