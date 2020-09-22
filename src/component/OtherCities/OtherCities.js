@@ -6,8 +6,16 @@ const OtherCities = ({ data, onCityClick }) => (
   <section className={styles.OtherCities}>
     <h4 className={styles.header}>Other Cities</h4>
     <div className={styles.citiesList}>
-      {data.map(cityData => (
-        <City key={cityData.city} data={cityData} onClick={onCityClick} />
+      {data.map(item => (
+        <City
+          key={item.id}
+          name={item.name}
+          temperature={parseInt(item.main.temp)}
+          weather={{
+            icon: item.weather[0].icon,
+            description: item.weather[0].description,
+          }}
+          onClick={onCityClick} />
       ))}
     </div>
   </section>

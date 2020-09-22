@@ -5,7 +5,7 @@ import WeatherData from './components/WeatherData';
 const Current = ({ data }) =>
   <div className={styles.Current}>
     <div className={styles.city}>
-      <h2>{data.city}</h2>
+      <h2>{data.name}</h2>
     </div>
     <WeatherData data={data} />
   </div>
