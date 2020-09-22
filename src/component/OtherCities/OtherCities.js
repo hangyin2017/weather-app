@@ -9,6 +9,7 @@ const OtherCities = ({ data, onCityClick }) => (
       {data.map(item => (
         <City
           key={item.id}
+          id={item.id}
           name={item.name}
           temperature={parseInt(item.main.temp)}
           weather={{

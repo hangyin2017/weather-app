@@ -23,6 +23,11 @@ class App extends Component {
       id: '2063523',
     }];
 
+    const DEFAULT_CITY = {
+      name: 'Melbourne',
+      id: '2158177',
+    };
+
     // data = {
     //   weather: [
     //     {
@@ -44,7 +49,7 @@ class App extends Component {
     // }
 
     this.state = {
-      currentCity: 'Melbourne',
+      currentCity: DEFAULT_CITY,
       weathers: [],
       loading: true,
     }
@@ -57,10 +62,14 @@ class App extends Component {
   }
 
   async getWeather() {
+    console.log(this.state.currentCity.name);
     const weather = await OpenWeatherMap('weather', this.state.currentCity.id);
-    // this.setState({
-    //   weathers: weather,
-    // });
+    const newWeathers = [...this.state.weathers];
+    const currentCityIndex = newWeathers.findIndex((item) => item.name === this.state.currentCity.name);
+    newWeathers[currentCityIndex] = weather;
+    this.setState({
+      weathers: newWeathers,
+    });
   }
 
   async getWeathers() {
@@ -76,12 +85,12 @@ class App extends Component {
   }
 
   setCurrentCity(city) {
-    this.setState({ currentCity: city });
+    this.setState({ currentCity: city }, this.getWeather);
   }
 
   render() {
     const { currentCity, weathers, loading } = this.state;
-    const currentCityIndex = weathers.findIndex((map) => map.name === currentCity);
+    const currentCityIndex = weathers.findIndex((item) => item.name === currentCity.name);
     const otherCitesData = [...weathers];
     const [currentCityData] = otherCitesData.splice(currentCityIndex, 1);
     return (

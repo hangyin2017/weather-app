@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './City.module.scss';
 
-const City = ({ name, temperature, weather, onClick }) =>
+const City = ({ id, name, temperature, weather, onClick }) =>
   <button
     className={styles.City}
     onClick={(event) => {
       event.preventDefault();
-      onClick(name)
+      onClick({ name: name, id: id });
     }}
   >
     <div className={styles.name}>{name}</div>
