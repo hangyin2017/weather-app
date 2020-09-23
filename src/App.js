@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './scss/App.scss';
+import styles from './App.module.scss';
 import Current from './component/Current';
 import OtherCities from './component/OtherCities';
 import Forecast from './component/Forecast';
@@ -23,10 +23,7 @@ class App extends Component {
       id: '2063523',
     }];
 
-    const DEFAULT_CITY = {
-      name: 'Melbourne',
-      id: '2158177',
-    };
+    const DEFAULT_CITY = this.CITIES[0];
 
     // data = {
     //   weather: [
@@ -61,6 +58,11 @@ class App extends Component {
     this.getWeathers();
   }
 
+  componentDidUpdate(_, prevState) {
+    if (this.state.currentCity !== prevState.currentCity)
+      this.getWeather();
+  }
+
   async getWeather() {
     console.log(this.state.currentCity.name);
     const weather = await OpenWeatherMap('weather', this.state.currentCity.id);
@@ -85,7 +87,7 @@ class App extends Component {
   }
 
   setCurrentCity(city) {
-    this.setState({ currentCity: city }, this.getWeather);
+    this.setState({ currentCity: city });
   }
 
   render() {
@@ -94,14 +96,14 @@ class App extends Component {
     const otherCitesData = [...weathers];
     const [currentCityData] = otherCitesData.splice(currentCityIndex, 1);
     return (
-      <div className="App">
-        <div className="container">
+      <div className={styles.app}>
+        <div className={styles.container}>
           {loading ? (
-            <div>Loading...</div>
+            <div className={styles.loading}>Loading...</div>
           ) : (
               <React.Fragment>
                 <Current data={currentCityData} />
-                <div className="bottom">
+                <div className={styles.bottom}>
                   <Forecast />
                   <OtherCities data={otherCitesData} onCityClick={this.setCurrentCity} />
                 </div>
