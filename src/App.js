@@ -59,8 +59,8 @@ class App extends Component {
   }
 
   componentDidUpdate(_, prevState) {
-    if (this.state.currentCity !== prevState.currentCity)
-      this.getWeather();
+    // if (this.state.currentCity !== prevState.currentCity)
+    //   this.getWeather();
   }
 
   async getWeather() {
@@ -108,7 +108,8 @@ class App extends Component {
                   <OtherCities data={otherCitesData} onCityClick={this.setCurrentCity} />
                 </div>
               </React.Fragment>
-            )}
+            )
+          }
         </div>
       </div>
     );
