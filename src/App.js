@@ -59,12 +59,11 @@ class App extends Component {
   }
 
   componentDidUpdate(_, prevState) {
-    // if (this.state.currentCity !== prevState.currentCity)
-    //   this.getWeather();
+    if (this.state.currentCity !== prevState.currentCity)
+      this.getWeather();
   }
 
   async getWeather() {
-    console.log(this.state.currentCity.name);
     const weather = await OpenWeatherMap('weather', this.state.currentCity.id);
     const newWeathers = [...this.state.weathers];
     const currentCityIndex = newWeathers.findIndex((item) => item.name === this.state.currentCity.name);
