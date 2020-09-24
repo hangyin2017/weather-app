@@ -50,8 +50,7 @@ class App extends React.Component {
       loading: true,
     })
 
-    await this.getWeathers();
-    await this.getForecast();
+    await Promise.all([this.getWeathers(), this.getForecast()]);
 
     this.setState({
       loading: false,
@@ -103,7 +102,6 @@ class App extends React.Component {
     const otherCitesData = [...weathers];
     const [currentCityData] = otherCitesData.splice(currentCityIndex, 1);
     const forecastData = forecasts.find((item) => item.city.name === currentCity.name);
-    console.log(currentCityData);
     return (
       <div className={styles.app}>
         <div className={styles.container}>

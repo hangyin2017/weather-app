@@ -11,7 +11,7 @@ const OtherCities = ({ data, onCityClick }) => (
           key={item.id}
           id={item.id}
           name={item.name}
-          temperature={parseInt(item.main.temp)}
+          temperature={item.main.temp}
           weather={{
             icon: item.weather[0].icon,
             description: item.weather[0].description,
