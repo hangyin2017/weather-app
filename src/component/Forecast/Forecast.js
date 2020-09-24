@@ -6,12 +6,12 @@ const Forecast = ({ data: { list } }) => {
 
   const dayForcasts = [];
   for(let i = 0; i < 5; i++) {
-    const dayForcast = list[i * 8];
-    const { main: { temp }, weather, dt, dt_txt } = dayForcast;
+    const dayForcast = list[7 + i * 8];
+    const { main: { temp }, weather, dt } = dayForcast;
     dayForcasts.push(
       <DayForecast
         key={dt}
-        day={dt_txt.slice(8,14)}
+        time={dt}
         temperature={temp}
         weather={weather}
       />
