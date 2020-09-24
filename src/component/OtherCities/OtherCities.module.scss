@@ -1,6 +1,6 @@
 @import '/src/scss/variables';
 
-.OtherCities {
+.otherCities {
   flex: 0 0 100%;
   padding: 25px 30px;
 }
@@ -14,7 +14,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .OtherCities {
+  .otherCities {
     flex: 0 0 40%;
     order: -1;
     padding: 0px 50px;

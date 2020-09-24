@@ -1,4 +1,4 @@
-.City {
+.city {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -27,7 +27,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .City {
+  .city {
     font-size: 1.25rem;
   }
 

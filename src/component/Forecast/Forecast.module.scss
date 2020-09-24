@@ -1,6 +1,6 @@
 @import '/src/scss/variables';
 
-.Forecast {
+.forecast {
   flex: 0 0 100%;
   padding: 25px 30px;
   border-bottom: 1px solid $light-black;
@@ -10,14 +10,14 @@
   color: $light-black;
 }
 
-.weathers {
+.dayForecasts {
   display: flex;
   flex-direction: row;
   margin-top: 20px;
 }
 
 @media screen and (min-width: 1024px) {
-  .Forecast {
+  .forecast {
     flex: 0 0 60%;
     padding: 0 50px;
     border-bottom: none;
@@ -29,7 +29,7 @@
     letter-spacing: 3px;
   }
 
-  .weathers {
+  .dayForecasts {
     margin-top: 40px;
   }
 }

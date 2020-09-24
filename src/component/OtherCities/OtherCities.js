@@ -3,7 +3,7 @@ import styles from './OtherCities.module.scss';
 import City from './components/City';
 
 const OtherCities = ({ data, onCityClick }) => (
-  <section className={styles.OtherCities}>
+  <section className={styles.otherCities}>
     <h4 className={styles.header}>Other Cities</h4>
     <div className={styles.citiesList}>
       {data.map(item => (

@@ -3,7 +3,7 @@ import styles from './City.module.scss';
 
 const City = ({ id, name, temperature, weather, onClick }) =>
   <button
-    className={styles.City}
+    className={styles.city}
     onClick={(event) => {
       event.preventDefault();
       onClick({ name: name, id: id });
