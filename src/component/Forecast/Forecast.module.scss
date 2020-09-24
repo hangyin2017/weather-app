@@ -16,6 +16,16 @@
   margin-top: 20px;
 }
 
+.loading {
+  align-self: center;
+  width: 100%;
+  padding: 10px;
+  background-color: $light-black;
+  font-size: 40px;
+  color: #fff;
+  text-align: center;
+}
+
 @media screen and (min-width: 1024px) {
   .forecast {
     flex: 0 0 60%;

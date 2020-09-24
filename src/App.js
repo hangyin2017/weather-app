@@ -25,26 +25,6 @@ class App extends React.Component {
 
     const DEFAULT_CITY = this.CITIES[0];
 
-    // data = {
-    //   weather: [
-    //     {
-    //       id: 802,
-    //       main: "Clouds",
-    //       description: "scattered clouds",
-    //       icon: "03d"
-    //     }
-    //   ],
-    //   main: {
-    //     temp: 17.87,
-    //     humidity: 48
-    //   },
-    //   wind: {
-    //     speed: 11.3,
-    //   },
-    //   id: 2158177,
-    //   name: "Melbourne",
-    // }
-
     this.state = {
       currentCity: DEFAULT_CITY,
       weathers: [],
@@ -60,25 +40,32 @@ class App extends React.Component {
   }
 
   componentDidUpdate(_, prevState) {
-    if (this.state.currentCity !== prevState.currentCity)
-      this.getWeather();
+    if (this.state.currentCity !== prevState.currentCity) {
+      this.getForecast();
+    }
   }
 
   async updateAll() {
     this.setState({
       loading: true,
     })
+
     await this.getWeathers();
     await this.getForecast();
+
     this.setState({
       loading: false,
     });
   }
 
   async getForecast() {
-    const forecast = await OpenWeatherMap('forecast', this.state.currentCity.id);
-    // const currentCityIndex = this.state.forecasts.findIndex((item) => item.city.id === this.state.currentCity.id);
-    // if (currentCityIndex) return;
+    const { forecasts, currentCity } = this.state;
+
+    if(forecasts.find((item) => item.city.name === currentCity.name))
+      return;
+
+    const forecast = await OpenWeatherMap('forecast', currentCity.id);
+
     this.setState({
       forecasts: [...this.state.forecasts, forecast],
     });
@@ -89,6 +76,7 @@ class App extends React.Component {
     const newWeathers = [...this.state.weathers];
     const currentCityIndex = newWeathers.findIndex((item) => item.name === this.state.currentCity.name);
     newWeathers[currentCityIndex] = weather;
+
     this.setState({
       weathers: newWeathers,
     });
@@ -97,13 +85,16 @@ class App extends React.Component {
   async getWeathers() {
     const ids = this.CITIES.map((city) => city.id);
     const { list } = await OpenWeatherMap('group', ids.join(','));
+
     this.setState({
       weathers: list,
     });
   }
 
   setCurrentCity(city) {
-    this.setState({ currentCity: city });
+    this.setState({
+      currentCity: city
+    });
   }
 
   render() {
@@ -112,6 +103,7 @@ class App extends React.Component {
     const otherCitesData = [...weathers];
     const [currentCityData] = otherCitesData.splice(currentCityIndex, 1);
     const forecastData = forecasts.find((item) => item.city.name === currentCity.name);
+    console.log(currentCityData);
     return (
       <div className={styles.app}>
         <div className={styles.container}>
