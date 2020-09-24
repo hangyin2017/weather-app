@@ -2,6 +2,7 @@
 
 .forecast {
   flex: 0 0 100%;
+  height: 235px;
   padding: 25px 30px;
   border-bottom: 1px solid $light-black;
 }
@@ -29,6 +30,7 @@
 @media screen and (min-width: 1024px) {
   .forecast {
     flex: 0 0 60%;
+    height: auto;
     padding: 0 50px;
     border-bottom: none;
     border-left: 3px solid rgba(0,0,0,0.1);

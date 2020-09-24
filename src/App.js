@@ -98,10 +98,9 @@ class App extends React.Component {
 
   render() {
     const { currentCity, weathers, forecasts, loading } = this.state;
-    const currentCityIndex = weathers.findIndex((item) => item.name === currentCity.name);
-    const otherCitesData = [...weathers];
-    const [currentCityData] = otherCitesData.splice(currentCityIndex, 1);
+    const otherCitesData = weathers.filter((item) => item.name !== currentCity.name);
     const forecastData = forecasts.find((item) => item.city.name === currentCity.name);
+
     return (
       <div className={styles.app}>
         <div className={styles.container}>
@@ -109,7 +108,7 @@ class App extends React.Component {
             <div className={styles.loading}>Loading...</div>
           ) : (
             <React.Fragment>
-              <Current data={currentCityData} />
+              <Current name={currentCity.name} data={forecastData} />
               <div className={styles.bottom}>
                 <Forecast data={forecastData} />
                 <OtherCities
