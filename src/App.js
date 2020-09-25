@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.CITIES = [{
+    this.INITIAL_CITIES = [{
       name: 'Melbourne',
       id: '2158177',
     }, {
@@ -23,7 +23,7 @@ class App extends React.Component {
       id: '2063523',
     }];
 
-    const DEFAULT_CITY = this.CITIES[0];
+    const DEFAULT_CITY = this.INITIAL_CITIES[0];
 
     this.state = {
       currentCity: DEFAULT_CITY,
@@ -50,7 +50,7 @@ class App extends React.Component {
       loading: true,
     })
 
-    await Promise.all([this.getWeathers(), this.getForecast()]);
+    await this.getForecast();
 
     this.setState({
       loading: false,
@@ -71,7 +71,7 @@ class App extends React.Component {
   }
 
   async getWeathers() {
-    const ids = this.CITIES.map((city) => city.id);
+    const ids = this.INITIAL_CITIES.map((city) => city.id);
     const { list } = await OpenWeatherMap('group', ids.join(','));
 
     this.setState({
@@ -86,8 +86,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentCity, weathers, forecasts, loading } = this.state;
-    const otherCitesData = weathers.filter((item) => item.name !== currentCity.name);
+    const { currentCity, forecasts, loading } = this.state;
     const forecastData = forecasts.find((item) => item.city.name === currentCity.name);
 
     return (
@@ -101,7 +100,8 @@ class App extends React.Component {
               <div className={styles.bottom}>
                 <Forecast data={forecastData} />
                 <OtherCities
-                  data={otherCitesData}
+                  initialCities={this.INITIAL_CITIES}
+                  currentCity={currentCity}
                   onCityClick={this.setCurrentCity}
                 />
               </div>

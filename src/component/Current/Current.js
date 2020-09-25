@@ -19,8 +19,9 @@ class Current extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.city !== prevProps.city)
+    if(this.props.city !== prevProps.city) {
       this.getWeather();
+    }
   }
   
   async getWeather() {
@@ -42,7 +43,7 @@ class Current extends React.Component {
     return (
       <div className={styles.current}>
       {loading ? (
-        <div className={styles.loading}> Loading...</div>
+        <div className={styles.loading}>Loading...</div>
       ) : (
         <React.Fragment>
           <div className={styles.basicInfo}>
