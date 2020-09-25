@@ -43,6 +43,13 @@
   color: $light-white;
 }
 
+.weatherData {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: stretch;
+  flex: 0 0 100%;
+}
+
 @media screen and (min-width: 1024px) {
   .current {
     height: 423px;
@@ -63,5 +70,11 @@
       height: 3px;
       margin-top: 1rem;
     }
+  }
+
+  .weatherData {
+    order: -1;
+    flex: 1 1 60%;
+    padding: 0 50px;
   }
 }

@@ -70,17 +70,6 @@ class App extends React.Component {
     });
   }
 
-  async getWeather() {
-    const weather = await OpenWeatherMap('weather', this.state.currentCity.id);
-    const newWeathers = [...this.state.weathers];
-    const currentCityIndex = newWeathers.findIndex((item) => item.name === this.state.currentCity.name);
-    newWeathers[currentCityIndex] = weather;
-
-    this.setState({
-      weathers: newWeathers,
-    });
-  }
-
   async getWeathers() {
     const ids = this.CITIES.map((city) => city.id);
     const { list } = await OpenWeatherMap('group', ids.join(','));
@@ -108,7 +97,7 @@ class App extends React.Component {
             <div className={styles.loading}>Loading...</div>
           ) : (
             <React.Fragment>
-              <Current name={currentCity.name} data={forecastData} />
+              <Current city={currentCity} />
               <div className={styles.bottom}>
                 <Forecast data={forecastData} />
                 <OtherCities

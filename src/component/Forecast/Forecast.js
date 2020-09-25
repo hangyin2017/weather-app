@@ -7,7 +7,7 @@ const Forecast = ({ data }) => {
 
   if(!!data) {
     for(let i = 0; i < 5; i++) {
-      const dayForcast = data.list[7 + i * 8];
+      const dayForcast = data.list[i * 8];
       const { main: { temp }, weather, dt } = dayForcast;
       dayForcasts.push(
         <DayForecast
