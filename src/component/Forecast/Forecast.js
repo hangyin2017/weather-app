@@ -8,9 +8,11 @@ class Forecast extends React.Component {
     super(props);
 
     this.OPTIONS = {
-      displayDays: 5,
-      dataDays: 5,
+      displayedDayCount: 5,
+      dataDayCount: 5,
     }
+
+    this.cachedData = [];
 
     this.state = {
       data: [],
@@ -19,48 +21,48 @@ class Forecast extends React.Component {
   }
 
   componentDidMount() {
-    this.getForecast();
+    this.updateData();
   }
 
   componentDidUpdate(prevProps) {
     if(this.props.city !== prevProps.city) {
-      this.getForecast();
+      this.updateData();
     }
   }
 
-  async getForecast() {
-    const { data } = this.state;
+  async updateData() {
     const { city } = this.props;
-    
-    if(data.find((item) => item.city.name === city.name))
-      return;
 
     this.setState({
       loading: true,
     })
 
-    const forecast = await OpenWeatherMap('forecast', city.id);
+    let data = this.cachedData.find((item) => item.city.name === city.name);
 
+    if(!data) {
+      data = await this.getForecast();
+      this.cachedData.push(data);
+    }
+    
     this.setState({
-      data: [...this.state.data, forecast],
+      data,
       loading: false,
     });
+  }
+
+  async getForecast() {
+    return await OpenWeatherMap('forecast', this.props.city.id);
   }
 
   createDayForecasts() {
     const dayForcasts = [];
     const { data } = this.state;
-    const { city } = this.props;
-    const { displayDays, dataDays } = this.OPTIONS;
+    const { displayedDayCount, dataDayCount } = this.OPTIONS;
 
-    const currentForecast = data.find((item) => item.city.name === city.name);
+    const increment = data.list.length / dataDayCount;
 
-    if(!currentForecast) return null;
-
-    const increment = currentForecast.list.length / dataDays;
-
-    for(let i = 0; i < displayDays; i++) {
-      const { main: { temp }, weather, dt } = currentForecast.list[i * increment];
+    for(let i = 0; i < displayedDayCount; i++) {
+      const { main: { temp }, weather, dt } = data.list[i * increment];
       dayForcasts.push(
         <DayForecast
           key={dt}
