@@ -7,7 +7,6 @@ module.exports = {
   output: {
     filename: './js/index.js',
     path: path.resolve(__dirname, './dist'),
-    // publicPath: '/',
   },
   devServer: {
     contentBase: './dist',
@@ -36,7 +35,13 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        use: ['file-loader'],
+        use: {
+          loader: 'file-loader',
+          options: {
+            outputPath: './assets',
+            publicPath: '/assets',
+          }
+        }
       },
     ],
   },
