@@ -3,7 +3,6 @@ import styles from './App.module.scss';
 import Current from './component/Current';
 import OtherCities from './component/OtherCities';
 import Forecast from './component/Forecast';
-import OpenWeatherMap from './utils/OpenWeatherMap';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,35 +26,10 @@ class App extends React.Component {
 
     this.state = {
       currentCity: DEFAULT_CITY,
-      weathers: [],
-      forecasts: [],
-      loading: false,
     }
 
     this.setCurrentCity = this.setCurrentCity.bind(this);
   }
-
-  // componentDidMount() {
-
-  // }
-
-  componentDidUpdate(_, prevState) {
-    if (this.state.currentCity !== prevState.currentCity) {
-
-    }
-  }
-
-  // async updateAll() {
-  //   this.setState({
-  //     loading: true,
-  //   })
-
-  //   await this.getForecast();
-
-  //   this.setState({
-  //     loading: false,
-  //   });
-  // }
 
   setCurrentCity(city) {
     this.setState({
@@ -64,26 +38,20 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentCity, loading } = this.state;
+    const { currentCity } = this.state;
 
     return (
       <div className={styles.app}>
         <div className={styles.container}>
-          {loading ? (
-            <div className={styles.loading}>Loading...</div>
-          ) : (
-            <React.Fragment>
-              <Current city={currentCity} />
-              <div className={styles.bottom}>
-                <Forecast city={currentCity} />
-                <OtherCities
-                  initialCities={this.INITIAL_CITIES}
-                  currentCity={currentCity}
-                  onCityClick={this.setCurrentCity}
-                />
-              </div>
-            </React.Fragment>
-          )}
+          <Current city={currentCity} />
+          <div className={styles.bottom}>
+            <Forecast city={currentCity} />
+            <OtherCities
+              initialCities={this.INITIAL_CITIES}
+              currentCity={currentCity}
+              onCityClick={this.setCurrentCity}
+            />
+          </div>
         </div>
       </div>
     );

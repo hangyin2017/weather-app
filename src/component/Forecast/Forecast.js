@@ -67,7 +67,7 @@ class Forecast extends React.Component {
           weather={weather}
         />
       );
-    };
+    }
 
     return dayForcasts;
   }

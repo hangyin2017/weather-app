@@ -10,7 +10,7 @@ class Current extends React.Component {
     this.state = {
       data: [],
       loading: true,
-    };
+    }
   }
 
   componentDidMount() {

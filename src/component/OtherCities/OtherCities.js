@@ -14,13 +14,13 @@ class OtherCities extends React.Component {
   }
 
   componentDidMount() {
-    this.getWeathers();
+    this.updateData();
   }
 
-  async getWeathers() {
+  async updateData() {
     this.setState({
       loading: true,
-    })
+    });
 
     const ids = this.props.initialCities.map((city) => city.id);
     const { list: data } = await getWeathers(ids);
