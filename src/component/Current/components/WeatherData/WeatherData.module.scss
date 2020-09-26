@@ -1,0 +1,58 @@
+@import '/src/scss/variables';
+
+.weatherData {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: stretch;
+  flex: 0 0 100%;
+}
+
+.majorInfo {
+  padding: 20px 0;
+}
+
+.temperature {
+  font-size: 3rem;
+}
+
+.weather {
+  color: $light-white;
+  font-size: 1.8rem;
+  letter-spacing: 5px;
+}
+
+.otherInfo {
+  padding: 30px 20px;
+  color: $light-white;
+}
+
+.humidity,
+.wind {
+  display: inline-block;
+  width: 50%;
+  font-size: 1.3rem;
+
+  > h4{
+    margin: 0 0 5px;
+  }
+
+  > p {
+    margin: 0;
+  }
+}
+
+.humidity {
+  border-right: 2px solid #fff;
+}
+
+@media screen and (min-width: 1024px) {
+  .weatherData {
+    order: -1;
+    flex: 1 1 60%;
+    padding: 0 50px;
+  }
+
+  .temperature {
+    font-size: 5rem;
+  }
+}

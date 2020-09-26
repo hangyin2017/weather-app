@@ -26,18 +26,18 @@ module.exports = {
           },
         },
       },
-      // {
-      //   test: /\.css$/,
-      //   use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      // },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
       {
         test: /\.s[ac]ss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
-      // {
-      //   test: /\.(png|jpe?g|gif|svg)$/,
-      //   use: ['file-loader'],
-      // },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: ['file-loader'],
+      },
     ],
   },
   plugins: [

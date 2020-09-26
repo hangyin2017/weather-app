@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Forecast.module.scss';
 import DayForecast from './components/DayForecast';
-import OpenWeatherMap from '../../utils/OpenWeatherMap';
+import getForecast from '../../apis/getForecast';
 
 class Forecast extends React.Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class Forecast extends React.Component {
     let data = this.cachedData.find((item) => item.city.name === city.name);
 
     if(!data) {
-      data = await this.getForecast();
+      data = await getForecast(city.id);
       this.cachedData.push(data);
     }
     
@@ -48,10 +48,6 @@ class Forecast extends React.Component {
       data,
       loading: false,
     });
-  }
-
-  async getForecast() {
-    return await OpenWeatherMap('forecast', this.props.city.id);
   }
 
   createDayForecasts() {

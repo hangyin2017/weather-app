@@ -21,6 +21,6 @@ const DayForecast = ({
       className={styles.temperature}
     />
   </div>
-)
+);
 
 export default DayForecast;

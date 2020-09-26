@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from './Current.module.scss';
-import MajorInfo from './components/MajorInfo';
-import OtherInfo from './components/OtherInfo';
-import OpenWeatherMap from '../../utils/OpenWeatherMap';
-import {toDayTime} from '../../utils/ParseTime';
+import WeatherData from './components/WeatherData';
+import BasicInfo from './components/BasicInfo';
+import getWeather from '../../apis/getWeather';
 
 class Current extends React.Component {
   constructor(props) {
@@ -15,24 +14,24 @@ class Current extends React.Component {
   }
 
   componentDidMount() {
-    this.getWeather();
+    this.updateData();
   }
 
   componentDidUpdate(prevProps) {
     if(this.props.city !== prevProps.city) {
-      this.getWeather();
+      this.updateData();
     }
   }
   
-  async getWeather() {
+  async updateData() {
     this.setState({
       loading: true,
     });
 
-    const weather = await OpenWeatherMap('weather', this.props.city.id);
+    const data = await getWeather(this.props.city.id);
 
     this.setState({
-      data: weather,
+      data,
       loading: false,
     });
   }
@@ -46,18 +45,16 @@ class Current extends React.Component {
         <div className={styles.loading}>Loading...</div>
       ) : (
         <React.Fragment>
-          <div className={styles.basicInfo}>
-            <div className={styles.cityName}>
-              <h2>{data.name}</h2>
-            </div>
-            <div className={styles.time}>
-              {toDayTime(data.dt * 1000)}
-            </div>
-          </div>
-          <div className={styles.weatherData}>
-            <MajorInfo weather={data.weather} temperature={data.main.temp} />
-            <OtherInfo humidity={data.main.humidity} wind={data.wind} />
-          </div>
+          <BasicInfo
+            name={data.name}
+            time={data.dt * 1000}
+          />
+          <WeatherData
+            weather={data.weather}
+            temperature={data.main.temp}
+            humidity={data.main.humidity}
+            wind={data.wind}
+          />
         </React.Fragment>
       )}
       </div>

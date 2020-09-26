@@ -5,6 +5,6 @@ const OpenWeatherMap = (type, id, units = 'metric') => {
   const query = `/${type}?id=${id}&units=${units}&appid=${appid}`;
 
   return fetch(baseURL + query).then(res => res.json());
-}
+};
 
 export default OpenWeatherMap;

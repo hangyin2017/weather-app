@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './OtherCities.module.scss';
 import City from './components/City';
-import OpenWeatherMap from '../../utils/OpenWeatherMap';
+import getWeathers from '../../apis/getWeathers';
 
 class OtherCities extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class OtherCities extends React.Component {
     })
 
     const ids = this.props.initialCities.map((city) => city.id);
-    const { list: data } = await OpenWeatherMap('group', ids.join(','));
+    const { list: data } = await getWeathers(ids);
 
     this.setState({
       data,

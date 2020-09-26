@@ -28,6 +28,6 @@ const City = ({
       />
     </div>
   </button>
-)
+);
 
 export default City;
