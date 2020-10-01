@@ -4,3 +4,4 @@ css/
 *.css.map
 dist/
 node_modules/
+.env
