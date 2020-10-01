@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Forecast.module.scss';
+import Loading from '../Loading';
 import DayForecast from './components/DayForecast';
 import getForecast from '../../apis/getForecast';
 
@@ -78,13 +79,11 @@ class Forecast extends React.Component {
       <section className={styles.forecast}>
         <h4 className={styles.header}>Forecast</h4>
         {loading ? (
-          <div className={styles.loading}>loading...</div>
+          <Loading />
         ) : (
-          <React.Fragment>
-            <div className={styles.dayForecasts}>
-              {this.createDayForecasts()}
-            </div>
-          </React.Fragment>
+          <div className={styles.dayForecasts}>
+            {this.createDayForecasts()}
+          </div>
         )}
       </section>
     )

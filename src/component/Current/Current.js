@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Current.module.scss';
+import Loading from '../Loading';
 import WeatherData from './components/WeatherData';
 import BasicInfo from './components/BasicInfo';
 import getWeather from '../../apis/getWeather';
@@ -42,9 +43,9 @@ class Current extends React.Component {
     return (
       <div className={styles.current}>
       {loading ? (
-        <div className={styles.loading}>Loading...</div>
+        <Loading style="transparent"/>
       ) : (
-        <React.Fragment>
+        <>
           <BasicInfo
             name={data.name}
             time={data.dt * 1000}
@@ -55,7 +56,7 @@ class Current extends React.Component {
             humidity={data.main.humidity}
             wind={data.wind}
           />
-        </React.Fragment>
+        </>
       )}
       </div>
     )

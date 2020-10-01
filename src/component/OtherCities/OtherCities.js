@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './OtherCities.module.scss';
+import Loading from '../Loading';
 import City from './components/City';
 import getWeathers from '../../apis/getWeathers';
 
@@ -39,7 +40,7 @@ class OtherCities extends React.Component {
       <section className={styles.otherCities}>
         <h4 className={styles.header}>Other Cities</h4>
         {loading ? (
-          <div className={styles.loading}>Loading...</div>
+          <Loading />
         ) : (
           <div className={styles.citiesList}>
             {data.map((item) => {
