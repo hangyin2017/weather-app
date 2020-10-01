@@ -18,7 +18,7 @@ const DayForecast = ({
     </div>
     <Temperature
       value={temperature}
-      className={styles.temperature}
+      style={styles.temperature}
     />
   </div>
 );

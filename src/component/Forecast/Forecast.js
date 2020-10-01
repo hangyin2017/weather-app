@@ -2,16 +2,11 @@ import React from 'react';
 import styles from './Forecast.module.scss';
 import Loading from '../Loading';
 import DayForecast from './components/DayForecast';
-import getForecast from '../../apis/getForecast';
+import { getForecast } from '../../apis/OpenWeatherMap';
 
 class Forecast extends React.Component {
   constructor(props) {
     super(props);
-
-    this.OPTIONS = {
-      displayedDayCount: 5,
-      dataDayCount: 5,
-    }
 
     this.cachedData = [];
 
@@ -54,7 +49,7 @@ class Forecast extends React.Component {
   createDayForecasts() {
     const dayForcasts = [];
     const { data } = this.state;
-    const { displayedDayCount, dataDayCount } = this.OPTIONS;
+    const { options: { displayedDayCount, dataDayCount } } = this.props;
 
     const increment = data.list.length / dataDayCount;
 

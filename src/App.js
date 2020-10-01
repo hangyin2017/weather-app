@@ -45,7 +45,13 @@ class App extends React.Component {
         <div className={styles.container}>
           <Current city={currentCity} />
           <div className={styles.bottom}>
-            <Forecast city={currentCity} />
+            <Forecast
+              city={currentCity}
+              options={{
+                displayedDayCount: 5,
+                dataDayCount: 5,
+              }}
+            />
             <OtherCities
               initialCities={this.INITIAL_CITIES}
               currentCity={currentCity}

@@ -11,10 +11,10 @@ const WeatherData = ({
   <div className={styles.weatherData}>
     <div className={styles.majorInfo}>
       <Temperature
-        className={styles.temperature}
+        style={styles.temperature}
         value={temperature}
         precision={1}
-        unit={'C'}
+        unit='C'
       />
       <div className={styles.weather}>{weather[0].main}</div>
     </div>

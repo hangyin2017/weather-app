@@ -7,7 +7,7 @@ const City = ({
   name,
   temperature,
   weather,
-  onClick
+  onClick,
 }) => (
   <button
     className={styles.city}
@@ -18,7 +18,7 @@ const City = ({
   >
     <div className={styles.name}>{name}</div>
     <Temperature
-      className={styles.temperature}
+      style={styles.temperature}
       value={temperature}
     />
     <div className={styles.icon}>

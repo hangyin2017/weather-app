@@ -3,7 +3,7 @@ import styles from './Current.module.scss';
 import Loading from '../Loading';
 import WeatherData from './components/WeatherData';
 import BasicInfo from './components/BasicInfo';
-import getWeather from '../../apis/getWeather';
+import { getWeather } from '../../apis/OpenWeatherMap';
 
 class Current extends React.Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class Current extends React.Component {
     return (
       <div className={styles.current}>
       {loading ? (
-        <Loading style="transparent"/>
+        <Loading style="transparent" />
       ) : (
         <>
           <BasicInfo

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './OtherCities.module.scss';
 import Loading from '../Loading';
 import City from './components/City';
-import getWeathers from '../../apis/getWeathers';
+import { getWeathers } from '../../apis/OpenWeatherMap';
 
 class OtherCities extends React.Component {
   constructor(props) {
