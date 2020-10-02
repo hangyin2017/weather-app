@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './DayForecast.module.scss';
 import Temperature from '../../../Temperature';
-import {toDayShort} from '../../../../utils/ParseTime';
+import {toDayShort} from '../../../../utils/parseTime';
 
 const DayForecast = ({
   time,

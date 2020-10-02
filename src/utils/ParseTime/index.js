@@ -1,1 +1,1 @@
-export * from './ParseTime';
+export * from './parseTime';

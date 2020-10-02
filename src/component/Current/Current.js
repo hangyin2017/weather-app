@@ -3,7 +3,7 @@ import styles from './Current.module.scss';
 import Loading from '../Loading';
 import WeatherData from './components/WeatherData';
 import BasicInfo from './components/BasicInfo';
-import { getWeather } from '../../apis/OpenWeatherMap';
+import { getWeather } from '../../apis/openWeatherMap';
 
 class Current extends React.Component {
   constructor(props) {
@@ -19,8 +19,14 @@ class Current extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.city !== prevProps.city) {
+    if(this.props.city !== prevProps.city ||
+      this.props.refreshCount !== prevProps.refreshCount
+    ) {
       this.updateData();
+    }
+
+    if(this.props.refreshCount !== prevProps.refreshCount) {
+
     }
   }
   

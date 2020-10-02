@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './OtherCities.module.scss';
 import Loading from '../Loading';
 import City from './components/City';
-import { getWeathers } from '../../apis/OpenWeatherMap';
+import { getWeathers } from '../../apis/openWeatherMap';
 
 class OtherCities extends React.Component {
   constructor(props) {
@@ -16,6 +16,12 @@ class OtherCities extends React.Component {
 
   componentDidMount() {
     this.updateData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.refreshCount !== prevProps.refreshCount) {
+      this.updateData();
+    }
   }
 
   async updateData() {

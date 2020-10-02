@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './BasicInfo.module.scss';
-import { toDayTime } from '../../../../utils/ParseTime';
+import { toDayTime } from '../../../../utils/parseTime';
 
 const BasicInfo = ({
   name,

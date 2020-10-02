@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './App.module.scss';
+import Refresh from './component/Refresh';
 import Current from './component/Current';
 import OtherCities from './component/OtherCities';
 import Forecast from './component/Forecast';
@@ -26,9 +27,19 @@ class App extends React.Component {
 
     this.state = {
       currentCity: DEFAULT_CITY,
+      refreshCount: 0,
     }
 
+    this.refresh = this.refresh.bind(this);
     this.setCurrentCity = this.setCurrentCity.bind(this);
+  }
+
+  refresh (event) {
+    event.preventDefault();
+    console.log(this.state.refreshCount);
+    this.setState((prevState) => {
+      return { refreshCount: prevState.refreshCount + 1 };
+    })
   }
 
   setCurrentCity(city) {
@@ -38,15 +49,23 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentCity } = this.state;
+    const { currentCity, refreshCount } = this.state;
 
     return (
       <div className={styles.app}>
         <div className={styles.container}>
-          <Current city={currentCity} />
+          <Refresh
+            onClick={this.refresh}
+            style={styles.refresh}
+          />
+          <Current
+            city={currentCity}
+            refreshCount={refreshCount}
+          />
           <div className={styles.bottom}>
             <Forecast
               city={currentCity}
+              refreshCount={refreshCount}
               options={{
                 displayedDayCount: 5,
                 dataDayCount: 5,
@@ -55,6 +74,7 @@ class App extends React.Component {
             <OtherCities
               initialCities={this.INITIAL_CITIES}
               currentCity={currentCity}
+              refreshCount={refreshCount}
               onCityClick={this.setCurrentCity}
             />
           </div>

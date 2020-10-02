@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Forecast.module.scss';
 import Loading from '../Loading';
 import DayForecast from './components/DayForecast';
-import { getForecast } from '../../apis/OpenWeatherMap';
+import { getForecast } from '../../apis/openWeatherMap';
 
 class Forecast extends React.Component {
   constructor(props) {
@@ -22,6 +22,11 @@ class Forecast extends React.Component {
 
   componentDidUpdate(prevProps) {
     if(this.props.city !== prevProps.city) {
+      this.updateData();
+    }
+
+    if(this.props.refreshCount !== prevProps.refreshCount) {
+      this.cachedData = [];
       this.updateData();
     }
   }
