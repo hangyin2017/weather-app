@@ -27,18 +27,17 @@ class App extends React.Component {
 
     this.state = {
       currentCity: DEFAULT_CITY,
-      refreshCount: 0,
+      updating: false,
     }
 
     this.refresh = this.refresh.bind(this);
     this.setCurrentCity = this.setCurrentCity.bind(this);
   }
 
-  refresh (event) {
+  refresh(event) {
     event.preventDefault();
-    console.log(this.state.refreshCount);
-    this.setState((prevState) => {
-      return { refreshCount: prevState.refreshCount + 1 };
+    this.setState({ updating: true }, () => {
+      setTimeout(() => this.setState({ updating: false }), 2000);
     })
   }
 
@@ -49,7 +48,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentCity, refreshCount } = this.state;
+    const { currentCity, updating } = this.state;
 
     return (
       <div className={styles.app}>
@@ -57,15 +56,16 @@ class App extends React.Component {
           <Refresh
             onClick={this.refresh}
             style={styles.refresh}
+            rotate={updating}
           />
           <Current
             city={currentCity}
-            refreshCount={refreshCount}
+            shouldUpdate={updating}
           />
           <div className={styles.bottom}>
             <Forecast
               city={currentCity}
-              refreshCount={refreshCount}
+              shouldUpdate={updating}
               options={{
                 displayedDayCount: 5,
                 dataDayCount: 5,
@@ -74,7 +74,7 @@ class App extends React.Component {
             <OtherCities
               initialCities={this.INITIAL_CITIES}
               currentCity={currentCity}
-              refreshCount={refreshCount}
+              shouldUpdate={updating}
               onCityClick={this.setCurrentCity}
             />
           </div>

@@ -5,12 +5,16 @@ import refreshIcon from './assets/refresh-icon.png';
 const Refresh = ({
   onClick,
   style,
+  rotate,
 }) => (
   <button
     className={`${styles.refresh} ${style}`}
     onClick={onClick}  
   >
-    <img src={refreshIcon} />
+    <img
+      className={rotate ? styles.rotate : ""}
+      src={refreshIcon}
+    />
   </button>
 );
 

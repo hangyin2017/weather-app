@@ -19,7 +19,8 @@ class OtherCities extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.refreshCount !== prevProps.refreshCount) {
+    const { shouldUpdate } = this.props;
+    if(shouldUpdate > prevProps.shouldUpdate) {
       this.updateData();
     }
   }

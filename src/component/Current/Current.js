@@ -19,14 +19,9 @@ class Current extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.city !== prevProps.city ||
-      this.props.refreshCount !== prevProps.refreshCount
-    ) {
+    const { city, shouldUpdate } = this.props;
+    if(city !== prevProps.city || shouldUpdate > prevProps.shouldUpdate) {
       this.updateData();
-    }
-
-    if(this.props.refreshCount !== prevProps.refreshCount) {
-
     }
   }
   

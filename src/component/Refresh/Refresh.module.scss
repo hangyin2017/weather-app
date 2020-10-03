@@ -1,12 +1,23 @@
 .refresh {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border: 0;
   outline:0;
   padding: 0;
   background-color: transparent;
+  cursor: pointer;
 
   > img {
     width: 100%;
   }
+}
+
+.rotate {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate{
+  0%{ -webkit-transform: rotate(0deg);}
+  50%{ -webkit-transform: rotate(180deg);}
+  100%{ -webkit-transform: rotate(360deg);}
 }
